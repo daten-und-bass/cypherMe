@@ -1,0 +1,32 @@
+<h1>{{localesMenu.[cypherMe]}}</h1>
+<h1>{{localesCommands.[Update]}}</h1>
+<h1>{{localesStrings.[Summary]}}</h1>
+<div>
+  <form>
+   <fieldset>
+      <legend>Cypher Me:</legend>
+      Your Password:<br>
+      <input id="password" type="password"><br>
+      Choose Cypher:&nbsp;&nbsp;&nbsp;Choose Shift:<br>
+      <select id="cypher">
+        <option value="caesar">Caesar</option>
+        <option value="morse">Morse</option>
+        <option value="transposition">Transposition</option>
+        <option value="vigenere">Vigenère</option>
+      </select>
+      <input type="number" name="multiplier" min="1" max="26" value="1"><br>
+      Choose Multiplier:<br>
+      <input type="number" name="multiplier" min="1" max="5" value="1"><br>
+       <input type="button" value="Submit" onclick="return cypherMe(this);"><br>
+    </fieldset>
+  </form>
+  <form>
+    <fieldset>
+      <legend>:eM rehpyC</legend>
+      Your new Password:<br>
+      <textarea id="passwordNew"></textarea><br>
+      Your used Cypher:<br>
+      <textarea id="cypherUsed"></textarea><br>
+    </fieldset>
+  </form>
+</div>

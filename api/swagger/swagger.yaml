@@ -1,0 +1,75 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: cypherMe
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /:
+    x-swagger-router-controller: context_html_web_index
+    get:
+      description: Redirects to localized main html (locale is detected according to req.acceptsLanguages() and code '302' is the default for a successful redirectin express.js)
+      produces: 
+        - text/html
+      operationId: index
+      responses:
+        "302":
+          description: Success
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /{locale}:
+    x-swagger-router-controller: context_html_web_index
+    get:
+      description: Returns a localized home page
+      produces: 
+        - text/html
+      operationId: index_locale
+      parameters:
+        - $ref: "#/parameters/locale"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+parameters:
+  locale:
+    name: locale
+    required: true
+    in: path
+    description: Used for detecting and setting the UI language.
+    type: string
+    enum: [ en, es, de, fr ] 
+    # @TODO: Move locale (enum) to app or context config
+
+# complex objects have schema definitions
+definitions:
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
