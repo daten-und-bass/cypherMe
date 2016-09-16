@@ -1,30 +1,63 @@
 'use strict';
 
-
-function cypherMe(input) {
-  var password = document.getElementById('password').value;
+function cypherMe() {
+  var passwordToEncrypt = document.getElementById('password').value;
   var cypherElement = document.getElementById('cypher');
   var cypher = cypherElement.options[cypherElement.selectedIndex].text;
+  var shift = document.getElementById('shift').value;
   var passwordNew = document.getElementById('passwordNew');
   var cypherUsed = document.getElementById('cypherUsed');
+  var repeater = document.getElementById('repeater').value;
 
-  passwordNew.value += password;
-  cypherUsed.value += cypher;
+  switch(cypher) {
+    case ('Caesar'):
+      passwordNew.value = Array(1 + parseInt(repeater)).join(cypherCaesarEncrypt(passwordToEncrypt, shift));
+      cypherUsed.value = cypher + ' ' + shift + ' (Repeater: ' + repeater + ')';
+      break;
+    case ('other'):
+      break;
+    default:
+      console.log('Default case');
   
   return false;
+  }
 }
 
-function cypherCaesarEncrypt(shift) {
-  var passwordToEncrypt = document.getElementById('password').value;
+function deCypherMe() {
+  var passwordToDecrypt = document.getElementById('passwordToDecrypt').value;
+  var cypherElementToDecrypt = document.getElementById('cypherToDecrypt');
+  var cypherToDecrypt = cypherElementToDecrypt.options[cypherElementToDecrypt.selectedIndex].text;
+  var shiftToDecrypt = document.getElementById('shiftToDecrypt').value;
+  var passwordDecrypted = document.getElementById('passwordDecrypted');
+  var cypherUsedToDecrypt = document.getElementById('cypherUsedToDecrypt');
+  var repeaterToDecrypt = document.getElementById('repeaterToDecrypt').value;
+
+  var passwordLength = parseInt(passwordToDecrypt.length) / parseInt(repeaterToDecrypt)
+
+  switch(cypherToDecrypt) {
+    case ('Caesar'):
+      var re = new RegExp ('.{1,' + parseInt(passwordLength) + '}', 'g');
+      passwordDecrypted.value = cypherCaesarDecrypt(passwordToDecrypt.match(re)[0], shiftToDecrypt);
+      cypherUsedToDecrypt.value = cypherToDecrypt + ' ' + shiftToDecrypt + ' (Repeater: ' + repeaterToDecrypt + ')';
+      break;
+    case ('other'):
+      break;
+    default:
+      console.log('Default case');
+  
+  return false;
+  }
+}
+
+function cypherCaesarEncrypt(passwordToEncrypt, shift) {
   var passwordEncryped = cypherCaesar(passwordToEncrypt, shift);
 
   return passwordEncryped;
 }
 
-function cypherCaesarDecrypt(shift) {
-  var shift = (26 - shift) % 26;
-  var passwordEncrypted = document.getElementById('password').value;
-  var passwordDecrypted = cypherCaesar(passwordEncrypted, shift);
+function cypherCaesarDecrypt(passwordToDecrypt, shift) {
+  var shiftBack = (26 - parseInt(shift)) % 26;
+  var passwordDecrypted = cypherCaesar(passwordToDecrypt, shiftBack);
 
   return passwordDecrypted;
 }
@@ -35,13 +68,13 @@ function cypherCaesar(password, shift) {
 
   for (var i = 0; i < password.length; i++) {
     var currentCharacter = password.charCodeAt(i);
-
-    switch(currentCharacter) {
+    
+    switch(true) {
       case (currentCharacter >= 65 && currentCharacter <=  90):
-        cypherCaesarPassword += String.fromCharCode((currentCharacter - 65 + shift) % 26 + 65);  
+        cypherCaesarPassword += String.fromCharCode((parseInt(currentCharacter) - 65 + parseInt(shift)) % 26 + 65);  
         break;
-      case (c >= 97 && c <= 122):
-        cypherCaesarPassword += String.fromCharCode((currentCharacter - 97 + shift) % 26 + 97); 
+      case (currentCharacter >= 97 && currentCharacter <= 122):
+        cypherCaesarPassword += String.fromCharCode((parseInt(currentCharacter) - 97 + parseInt(shift)) % 26 + 97);
         break;
       default:
         cypherCaesarPassword += password.charAt(i);

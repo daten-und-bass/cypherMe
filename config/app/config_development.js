@@ -33,7 +33,7 @@ var appConfig = {
   process.env.WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8');
   // process.env.FLIXNET_WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8');
 
-  fs.unlinkSync(appConfig.web().https.key)  
+  // fs.unlinkSync(appConfig.web().https.key)  
 })();
 
 module.exports = appConfig;
