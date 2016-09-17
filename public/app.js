@@ -130,6 +130,7 @@ function cypherMeReverseCase(password) {
 
   return passwordEnOrDecrypted;
 }
+
 function toggleView() {
 
   var cypherElement = document.getElementById('cypher');

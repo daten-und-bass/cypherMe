@@ -1,13 +1,43 @@
-<h1 style="text-align: center;">{{localesMenu.[cypherMe]}}</h1>
-<h3 style="text-align: center;">Cypher your passwords ...</h3>
-<h3 style="text-align: center;">... and thus get two-factor paper passwords</h3>
-<div style="display: flex; justify-content: center; align-items: center;">
-  <form id="formToEncrypt"style="width: 100%">
+<style type="text/css">
+  body {
+    font-family: "Courier New", Courier, monospace !important;
+  }
+  h1, h3 {
+   text-align: center; 
+  }
+
+  hr {
+    color:rgb(118,118,119);
+  }
+
+  form {
+    width: 100%;
+  }
+
+  legend {
+    font-weight: bold;
+  }
+
+  #divToEncryptDecrypt,
+  #divEncryptedDecrypted {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+</style>
+
+<h1><span style="color:rgb(118,118,119);">cypher</span><span style="color:rgb(255, 235, 59);">Me</span></h1>
+<hr>
+<h3 ><span style="color:rgb(118,118,119);">Cypher</span> your <span style="color:rgb(255, 235, 59);">passwords</span> ...</h3>
+<h3>... and get <span style="color:rgb(118,118,119);">two</span>-<span style="color:rgb(255, 235, 59);">factor</span> paper passwords</h3>
+<hr><br><br>
+<div id="divToEncryptDecrypt">
+  <form id="formToEncrypt">
    <fieldset>
       <legend>Cypher Me:</legend>
       Your Password:<br>
       <input id="password" type="text"><br>
-      Choose Cypher:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label id="shiftLabel" for="shift">Choose Shift:</label> <br>
+      Choose Cypher:&nbsp; &nbsp; <label id="shiftLabel" for="shift">Choose Shift:</label> <br>
       <select id="cypher" onchange="toggleView()">
         <option value="caesar">Caesar</option>
         <option value="reverse">Reverse Word</option>
@@ -16,16 +46,16 @@
       </select>
       <input id="shift" type="number" min="1" max="26" value="1"><br>
       Choose Repeater:<br>
-      <input id="repeater" type="number" min="1" max="5" value="1"><br>
+      <input id="repeater" type="number" min="1" max="5" value="1"><br><br>
        <input type="button" value="Encrypt" onclick="return cypherMe(this);"><br>
     </fieldset>
   </form>
-  <form id="formToDecrypt" style="width: 100%">
+  <form id="formToDecrypt">
    <fieldset>
       <legend>:eM rehpyC</legend>
       Your (encrypted) Password:<br>
       <input id="passwordToDecrypt" type="text"><br>
-      Chosen Cypher:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<label id="shiftToDecryptLabel" for="shiftToDecrypt">Chosen Shift:</label> <br>
+      Chosen Cypher:&nbsp; &nbsp; <label id="shiftToDecryptLabel" for="shiftToDecrypt">Chosen Shift:</label> <br>
       <select id="cypherToDecrypt" onchange="toggleViewToDecrypt()">
         <option value="caesar">Caesar</option>
         <option value="reverse">Reverse Word</option>
@@ -34,30 +64,33 @@
       </select>
       <input id="shiftToDecrypt" type="number" min="1" max="26" value="1"><br>
       Chosen Repeater:<br>
-      <input id="repeaterToDecrypt" type="number" min="1" max="5" value="1"><br>
+      <input id="repeaterToDecrypt" type="number" min="1" max="5" value="1"><br><br>
       <input type="button" value="Decrypt" onclick="return deCypherMe(this);"><br>
     </fieldset>
   </form>
 </div>
-<div style="display: flex; justify-content: center; align-items: center;">
-  <form id="formEncrypted" style="width: 100%">
+<div id="divEncryptedDecrypted">
+  <form id="formEncrypted">
     <fieldset>
       <legend>:eM rehpyC</legend>
       Your encrypted Password:<br>
       <textarea id="passwordEncrypted" readonly="true"></textarea><br>
       Your used Cypher and Repeater:<br>
-      <textarea id="cypherUsed" readonly="true"></textarea><br> 
+      <textarea id="cypherUsed" readonly="true"></textarea>
     </fieldset>
-    <input type="button" value="Reset" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset();"><br>  
+    <input type="button" value="Reset" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset();
+    toggleView()"><br>  
   </form>
-  <form id="formDecrypted" style="width: 100%">
+  <form id="formDecrypted">
     <fieldset>
       <legend>Cypher Me:</legend>
       Your decrypted Password:<br>
       <textarea id="passwordDecrypted" readonly="true"></textarea><br>
       Your used Cypher and Repeater:<br>
-      <textarea id="cypherUsedToDecrypt" readonly="true"></textarea><br>
+      <textarea id="cypherUsedToDecrypt" readonly="true"></textarea>
     </fieldset>
-    <input type="button" value="Reset" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset();"><br> 
+    <input type="button" value="Reset" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset();
+    toggleViewToDecrypt();"><br> 
   </form>
-</div>
+</div><br><br>
+<hr>
