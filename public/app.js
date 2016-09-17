@@ -1,69 +1,85 @@
 'use strict';
 
 function cypherMe() {
-  var passwordToEncrypt = document.getElementById('password').value;
+  var password = document.getElementById('password').value;
   var cypherElement = document.getElementById('cypher');
-  var cypher = cypherElement.options[cypherElement.selectedIndex].text;
+  var cypher = cypherElement.options[cypherElement.selectedIndex];
   var shift = document.getElementById('shift').value;
-  var passwordNew = document.getElementById('passwordNew');
+  var passwordEncrypted = document.getElementById('passwordEncrypted');
   var cypherUsed = document.getElementById('cypherUsed');
   var repeater = document.getElementById('repeater').value;
 
-  switch(cypher) {
-    case ('Caesar'):
-      passwordNew.value = Array(1 + parseInt(repeater)).join(cypherCaesarEncrypt(passwordToEncrypt, shift));
-      cypherUsed.value = cypher + ' ' + shift + ' (Repeater: ' + repeater + ')';
+  switch(cypher.value) {
+    case ('caesar'):
+      passwordEncrypted.value = Array(1 + parseInt(repeater)).join(cypherMeCaesarEncrypt(password, shift));
+      cypherUsed.value = cypher.text + ' ' + shift + ' (Repeater: ' + repeater + ')';
       break;
-    case ('other'):
+    case ('reverse'):
+      passwordEncrypted.value = Array(1 + parseInt(repeater)).join(cypherMeReverse(password));
+      cypherUsed.value = cypher.text + ' (Repeater: ' + repeater + ')';
+      break;
+    case ('reverseCase'):
+      passwordEncrypted.value = Array(1 + parseInt(repeater)).join(cypherMeReverseCase(password));
+      cypherUsed.value = cypher.text + ' (Repeater: ' + repeater + ')';
+      break;
+    case ('vigenere'):
       break;
     default:
       console.log('Default case');
+  } 
   
   return false;
-  }
 }
 
 function deCypherMe() {
   var passwordToDecrypt = document.getElementById('passwordToDecrypt').value;
   var cypherElementToDecrypt = document.getElementById('cypherToDecrypt');
-  var cypherToDecrypt = cypherElementToDecrypt.options[cypherElementToDecrypt.selectedIndex].text;
+  var cypherToDecrypt = cypherElementToDecrypt.options[cypherElementToDecrypt.selectedIndex];
   var shiftToDecrypt = document.getElementById('shiftToDecrypt').value;
   var passwordDecrypted = document.getElementById('passwordDecrypted');
   var cypherUsedToDecrypt = document.getElementById('cypherUsedToDecrypt');
   var repeaterToDecrypt = document.getElementById('repeaterToDecrypt').value;
 
   var passwordLength = parseInt(passwordToDecrypt.length) / parseInt(repeaterToDecrypt)
+  var re = new RegExp ('.{1,' + parseInt(passwordLength) + '}', 'g');
 
-  switch(cypherToDecrypt) {
-    case ('Caesar'):
-      var re = new RegExp ('.{1,' + parseInt(passwordLength) + '}', 'g');
-      passwordDecrypted.value = cypherCaesarDecrypt(passwordToDecrypt.match(re)[0], shiftToDecrypt);
-      cypherUsedToDecrypt.value = cypherToDecrypt + ' ' + shiftToDecrypt + ' (Repeater: ' + repeaterToDecrypt + ')';
+  switch(cypherToDecrypt.value) {
+    case ('caesar'):
+      passwordDecrypted.value = cypherMeCaesarDecrypt(passwordToDecrypt.match(re)[0], shiftToDecrypt);
+      cypherUsedToDecrypt.value = cypherToDecrypt.text + ' ' + shiftToDecrypt + ' (Repeater: ' + repeaterToDecrypt + ')';
       break;
-    case ('other'):
+    case ('reverse'):
+      passwordDecrypted.value = cypherMeReverse(passwordToDecrypt.match(re)[0]);
+      cypherUsedToDecrypt.value = cypherToDecrypt.text + ' (Repeater: ' + repeaterToDecrypt + ')';
+      break;
+    case ('reverseCase'):
+      passwordDecrypted.value = cypherMeReverseCase(passwordToDecrypt.match(re)[0]);
+      cypherUsedToDecrypt.value = cypherToDecrypt.text + ' (Repeater: ' + repeaterToDecrypt + ')';
+      break;
+    case ('vigenere'):
       break;
     default:
       console.log('Default case');
-  
-  return false;
   }
+
+  return false;
 }
 
-function cypherCaesarEncrypt(passwordToEncrypt, shift) {
-  var passwordEncryped = cypherCaesar(passwordToEncrypt, shift);
+function cypherMeCaesarEncrypt(passwordToEncrypt, shift) {
+  var passwordEncryped = cypherMeCaesar(passwordToEncrypt, shift);
 
   return passwordEncryped;
 }
 
-function cypherCaesarDecrypt(passwordToDecrypt, shift) {
+function cypherMeCaesarDecrypt(passwordToDecrypt, shift) {
   var shiftBack = (26 - parseInt(shift)) % 26;
-  var passwordDecrypted = cypherCaesar(passwordToDecrypt, shiftBack);
+  var passwordDecrypted = cypherMeCaesar(passwordToDecrypt, shiftBack);
 
   return passwordDecrypted;
 }
 
 
-function cypherCaesar(password, shift) {
+function cypherMeCaesar(password, shift) {
   var cypherCaesarPassword = '';
 
   for (var i = 0; i < password.length; i++) {
@@ -85,57 +101,66 @@ function cypherCaesar(password, shift) {
 }
 
 
-function cypherMorseEncrypt() {
-  var passwordToEncrypt = document.getElementById('password').value.toLowerCase();
-  var passwordEncryped = cypherMorseEncrypt(passwordToEncrypt);
+function cypherMeReverse(password) {
+  var passwordEnOrDecrypted = "";
 
-  return passwordEncryped;
+  for (var i = password.length - 1; i >= 0; i--) {
+      passwordEnOrDecrypted += password[i];
+  }
+  return passwordEnOrDecrypted;
 }
 
-// function cypherMorse(password) {
+function cypherMeReverseCase(password) {
+  var passwordEnOrDecrypted = "";
 
-// var charCodes=new Array(36); 
-// var morseCode = {
-//   'a': '. _',
-//   'b': '_ . . .',
-//   'c': '_ . _ .',
-//   'd': '_ . .',
-//   'e': '.',
-//   'f': '. . _ .',
-//   'g': '_ _ .',
-//   'h': '. . . .',
-//   'i': '. .',
-//   'j': '. _ _ _',
-//   'k': '_ . _',
-//   'l': '. _ . .',
-//   'm': '_ _',
-//   'n': '_ .',
-//   'o': '_ _ _',
-//   'p': '. _ _ .',
-//   'q': '_ _ . _',
-//   'r': '. _ .',
-//   's': '. . .',
-//   't': '_',
-//   'u': '. . _',
-//   'v': '. . . _',
-//   'w': '. _ _',
-//   'x': '_ . . _',
-//   'y': '_ . _ _',
-//   'z': '_ _ . .',
-//   '0': '_ _ _ _ _',
-//   '1': '. _ _ _ _',
-//   '2': '. . _ _ _',
-//   '3': '. . . _ _',
-//   '4': '. . . . _',
-//   '5': '. . . . .',
-//   '6': '_ . . . .',
-//   '7': '_ _ . . .',
-//   '8': '_ _ _ . .',
-//   '9': '_ _ _ _ .',
+  for (var i = password.length - 1; i >= 0; i--) {
+    var currentCharacter = password.charCodeAt(i);
+    
+    switch(true) {
+      case (currentCharacter >= 65 && currentCharacter <=  90): 
+        passwordEnOrDecrypted += password[i].toLowerCase();
+        break;
+      case (currentCharacter >= 97 && currentCharacter <= 122):
+        passwordEnOrDecrypted += password[i].toUpperCase();
+        break;
+      default:
+        passwordEnOrDecrypted += password[i];
+    }
+  }
 
-// }
+  return passwordEnOrDecrypted;
+}
+function toggleView() {
 
+  var cypherElement = document.getElementById('cypher');
+  var cypher = cypherElement.options[cypherElement.selectedIndex].value;
 
+  switch(cypher) {
+    case ('caesar'): 
+      document.getElementById('shift').style.display = 'inline';
+      document.getElementById('shiftLabel').style.display = 'inline';
+      break;
+    default:
+      document.getElementById('shift').style.display = 'none';
+      document.getElementById('shiftLabel').style.display = 'none';
+  }
+}
+
+function toggleViewToDecrypt() {
+
+  var cypherElement = document.getElementById('cypherToDecrypt');
+  var cypherToDecrypt = cypherElement.options[cypherElement.selectedIndex].value;
+
+  switch(cypherToDecrypt) {
+    case ('caesar'): 
+      document.getElementById('shiftToDecrypt').style.display = 'inline';
+      document.getElementById('shiftToDecryptLabel').style.display = 'inline';
+      break;
+    default:
+      document.getElementById('shiftToDecrypt').style.display = 'none';
+      document.getElementById('shiftToDecryptLabel').style.display = 'none';
+  }
+}
 
 
 
