@@ -34,6 +34,7 @@ var context_html_web_index = require('../../api/controllers/html_web_index')
 
 
 module.exports = {
+  webConfig:webConfig,
   context_html_web_index: context_html_web_index,
 };
 

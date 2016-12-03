@@ -2,6 +2,7 @@
   body {
     font-family: "Courier New", Courier, monospace !important;
   }
+
   h1, h3 {
    text-align: center; 
   }
@@ -37,14 +38,14 @@
       <legend>Cypher Me:</legend>
       Your Password:<br>
       <input id="password" type="text"><br>
-      Choose Cypher:&nbsp; &nbsp; <label id="shiftLabel" for="shift">Choose Shift:</label> <br>
+      Choose Cypher:&nbsp; &nbsp; <label id="shiftLabel" for="shift">Choose Shift:</label> <label id="keywordLabel" for="keyword">Choose Keyword:</label> <br>
       <select id="cypher" onchange="toggleView()">
         <option value="caesar">Caesar</option>
         <option value="reverse">Reverse Word</option>
         <option value="reverseCase">Reverse Word and Case</option>
-        <option value="vigenere" disabled="true">Vigenère</option>
+        <option value="vigenere">Vigenère</option>
       </select>
-      <input id="shift" type="number" min="1" max="26" value="1"><br>
+      <input id="shift" type="number" min="1" max="26" value="1"> <input id="keyword" type="text" min="1"> <br>
       Choose Repeater:<br>
       <input id="repeater" type="number" min="1" max="5" value="1"><br><br>
        <input type="button" value="Encrypt" onclick="return cypherMe(this);"><br>
@@ -55,14 +56,14 @@
       <legend>:eM rehpyC</legend>
       Your (encrypted) Password:<br>
       <input id="passwordToDecrypt" type="text"><br>
-      Chosen Cypher:&nbsp; &nbsp; <label id="shiftToDecryptLabel" for="shiftToDecrypt">Chosen Shift:</label> <br>
+      Chosen Cypher:&nbsp; &nbsp; <label id="shiftToDecryptLabel" for="shiftToDecrypt">Chosen Shift:</label> <label id="keywordToDecryptLabel" for="keywordToDecrypt">Choose Keyword:</label> <br>
       <select id="cypherToDecrypt" onchange="toggleViewToDecrypt()">
         <option value="caesar">Caesar</option>
         <option value="reverse">Reverse Word</option>
         <option value="reverseCase">Reverse Word and Case</option>
-        <option value="vigenere" disabled="true">Vigenère</option>
+        <option value="vigenere">Vigenère</option>
       </select>
-      <input id="shiftToDecrypt" type="number" min="1" max="26" value="1"><br>
+      <input id="shiftToDecrypt" type="number" min="1" max="26" value="1"> <input id="keywordToDecrypt" type="text" min="1"><br>
       Chosen Repeater:<br>
       <input id="repeaterToDecrypt" type="number" min="1" max="5" value="1"><br><br>
       <input type="button" value="Decrypt" onclick="return deCypherMe(this);"><br>
@@ -78,8 +79,10 @@
       Your used Cypher and Repeater:<br>
       <textarea id="cypherUsed" readonly="true"></textarea>
     </fieldset>
-    <input type="button" value="Reset" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset();
-    toggleView()"><br>  
+    <div style="text-align: center;">
+      <input type="button" value="Reset" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset();
+      toggleView()" style="margin-top: 8px; width: 99%;"> 
+    </div>
   </form>
   <form id="formDecrypted">
     <fieldset>
@@ -89,8 +92,19 @@
       Your used Cypher and Repeater:<br>
       <textarea id="cypherUsedToDecrypt" readonly="true"></textarea>
     </fieldset>
-    <input type="button" value="Reset" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset();
-    toggleViewToDecrypt();"><br> 
+    <div style="text-align: center;">
+      <input type="button" value="Reset" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset();
+      toggleViewToDecrypt();" style="margin-top: 8px; width: 99%;">
+    </div>
   </form>
 </div><br><br>
 <hr>
+<div style="text-align: right; font-size: 12px; color:rgb(118,118,119);">
+  daten&amp;bass 2016
+</div>
+<script type="text/javascript">
+window.onload = function () {
+  toggleView();
+  toggleViewToDecrypt();
+}
+</script>

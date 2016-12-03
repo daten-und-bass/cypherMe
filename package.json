@@ -1,11 +1,18 @@
 {
-  "name": "nodeTestApp19",
-  "version": "0.0.1",
+  "name": "cypherMe",
+  "version": "0.1.0",
   "private": true,
-  "description": "New Swagger API Project",
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "description": "Cypher your passwords and get two-factor paper passwords",
+  "keywords": [
+    "cryptography",
+    "encryption",
+    "express",
+    "handlebars",
+    "web app",
+    "swagger"
+  ],
+  "author": "arne-at-daten-und-bass",
+  "license": "MIT",
   "main": "app.js",
   "dependencies": {
     "express": "^4.12.3",

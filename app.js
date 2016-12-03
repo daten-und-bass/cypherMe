@@ -1,30 +1,39 @@
 'use strict';
 
-var SwaggerExpress = require('swagger-express-mw');
 var express = require('express');
-var app = express();
 var path = require('path');
-
 var https = require('https');
+
 var helmet = require('helmet');
 var forceSSL = require('express-force-ssl');
-var app_config = require('./config/app');
+
 var exphbs  = require('express-handlebars');
 
-var config = {
-  appRoot: __dirname // required config
-};
+var SwaggerExpress = require('swagger-express-mw');
+
+var webConfig = require('./config/context').webConfig;
+
+var app = express();
+
+var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_CRT}, app);
+httpsServer.listen(webConfig.https.port);
+
+app.set('trust proxy', webConfig.proxies);
+app.set('trust proxy', 'loopback, 192.168.0.41');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.set('trust proxy', 'loopback, 192.168.0.41');
+app.set("forceSSLOptions", { httpsPort: webConfig.https.port });
 
 app.use(helmet());
-app.set("forceSSLOptions", { httpsPort: app_config.web().https.port });
 app.use(forceSSL);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+var config = {
+  appRoot: __dirname // required config
+};
 
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
@@ -40,7 +49,4 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   }
 });
 
-var httpsServer = https.createServer({key: process.env.WEB_HTTPS_KEY, cert: process.env.WEB_HTTPS_CRT}, app);
-httpsServer.listen(app_config.web().https.port);
-
-module.exports = app; // for testing
+module.exports = app;
