@@ -25,6 +25,12 @@ var localesCommandsApp = {
     'es': {'ES': 'Borrar'},
     'fr': {'FR': 'Effacer'},
   },
+  'Cancel': {
+    'de': {'DE': 'Abrechen'},
+    'en': {'EN': 'Cancel'},
+    'es': {'ES': 'Cancelar'},
+    'fr': {'FR': 'Annuler'},
+  },
 };
 
 module.exports = localesCommandsApp;
