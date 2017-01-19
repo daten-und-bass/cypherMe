@@ -1,35 +1,23 @@
 'use strict';
 
 var localesCommandsApp = {
-  'Create': {
-    'de': {'DE': 'Speichern'},
-    'en': {'EN': 'Create'},
-    'es': {'ES': 'Grabar'},    
-    'fr': {'FR': 'Enregistrer'},
+  'Encrypt': {
+    'de': {'DE': 'Verschlüsseln'},
+    'en': {'EN': 'Encrypt'},
+    'es': {'ES': 'Cifrar'},    
+    'fr': {'FR': 'Chiffrer'},
   },
-  'Show': {
-    'de': {'DE': 'Anzeigen'},
-    'en': {'EN': 'Show'},
-    'es': {'ES': 'mostrar'},
-    'fr': {'FR': 'Montrer'},   
+  'Decrypt': {
+    'de': {'DE': 'Entschlüsseln'},
+    'en': {'EN': 'Decrypt'},
+    'es': {'ES': 'Descifrar'},    
+    'fr': {'FR': 'Déchiffrer'},
   },
-  'Update': {
-    'de': {'DE': 'Aktualisieren'},
-    'en': {'EN': 'Update' },
-    'es': {'ES': 'Actualizar'},
-    'fr': {'FR': 'Actualiser'},   
-  },
-  'Delete': {
-    'de': {'DE': 'Löschen'},
-    'en': {'EN': 'Delete'},
-    'es': {'ES': 'Borrar'},
-    'fr': {'FR': 'Effacer'},
-  },
-  'Cancel': {
-    'de': {'DE': 'Abrechen'},
-    'en': {'EN': 'Cancel'},
-    'es': {'ES': 'Cancelar'},
-    'fr': {'FR': 'Annuler'},
+  'Reset': {
+    'de': {'DE': 'Zurücksetzen'},
+    'en': {'EN': 'Reset'},
+    'es': {'ES': 'Reiniciar'},
+    'fr': {'FR': 'Réinitialiser'},   
   },
 };
 

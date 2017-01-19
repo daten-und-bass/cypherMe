@@ -52,6 +52,13 @@ parameters:
     description: Used for detecting and setting the UI language.
     type: string
     enum: [ en, es, de, fr ] 
+  lang:
+    name: lang
+    required: true
+    in: query
+    description: Used for detecting and setting the UI language when redirecting from english-only pages
+    type: string
+    enum: [ en, es, de, fr ] 
 
 # complex objects #
 definitions:
