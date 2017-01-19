@@ -5,7 +5,7 @@ var api = supertest('https://192.168.4.11:10011'); // supertest init;
 var expect = chai.expect;
 var assert = chai.assert;
 
-var clientApp = require('../../../public/app');
+var clientApp = require('../../../public/cypherMeApp');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
