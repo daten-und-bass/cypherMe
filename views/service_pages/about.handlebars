@@ -1,0 +1,132 @@
+<br>
+<div class="accordion">Is this really serious???</div>
+<div class="panel">
+  <p>No .. and yes ... and it depends.</p>
+  <p>Of cousrse ... <strong>please consider a password manager first</strong>. No question!</p>
+  <p>In any case: Make sure <strong>not to use the same account name and password combination for each website.</strong></p>
+  <br>
+  <p style="text-align: center;">However, people tend to write down their passwords (or even worse: all in one "place") ... <br> ...what if that "place" gets stolen?</p>
+  <br>
+  <p>For those the following might be interesting ...</p>
+</div>
+
+<div class="accordion">What is two-factor authentication (in general)?</div>
+<div class="panel">
+  <div>
+    <p>It is an authentication method based on the combination of two factors:</p>
+    <ul>
+      <li>Something you know (e.g. a secret password) and </li>
+      <li>Something you have (e.g. a token generator such as hardware-based or <a href="https://de.wikipedia.org/wiki/Google_Authenticator">Google Authenticator</a>)</li>
+    </ul>
+  </div>
+  <p>A good everyday-life example is your (PIN protected) debit card:</p>
+    <ul>
+      <li>Know: PIN</li>
+      <li>Have: Card</li>
+    </ul>
+  </div>
+</div>
+
+<div class="accordion">What are two-factor paper passwords?</div>
+<div class="panel">
+  <p>The <strong>idea</strong> goes back to this blog post by John Graham-Cumming: </p>
+  <p style="text-align: center;"><a href="http://blog.jgc.org/2016/05/two-factor-paper-passwords.html" target="_blank">http://blog.jgc.org/2016/05/two-factor-paper-passwords.html</a></p><br>
+  <p>Two-factor paper passwords are save to write down. They might be considered as a means for an off-line, non-digital password manager. <strong>They reverse the scheme described above:</strong></p>
+  <ul>
+    <li>Something you have: The written copy of the password.</li>
+    <li>Something you know: How to transform the password into what you actually type in.</li>
+  </ul><br>
+  <p><strong>Short example:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Reverse word and case</li>
+    <li>Repitions: 2</li>
+    <li>The (encrypted) password: 765WpTERCEsYm543765WpTERCEsYm543</li>
+  </ul>
+  <p>This is only a short and probably not very good example (especially as it is lacking special characters) ... So do better ... please. But now you could safely write down the initial password and remember (keep secret) the transformation.</p>
+  <p>In order to avoid repeating the same password for several sites you might consider replacing "MySecretPw" with something corelated to e.g. each site. Or consider using the Viginére cypher with one (always the same) password and (changing, but easyly remembered) keys related to the site/service the password is for.</p>
+
+  <br>
+  <p> <strong>What two-factor paper passwords DON'T do:</strong></p>
+  <p style="text-align: center;">They do NOT protect against disclosure of the final (encrypted, typed in) password.<br> That is where real two-factor systems such as Google Authenticator come in.</p>
+</div>
+
+<div class="accordion">What about this "app"?</div>
+<div class="panel">
+  <p>Open source: <a href="https://github.com/daten-und-bass/cypherMe">Source Code</a></p>
+  <p>License: <a href="https://github.com/daten-und-bass/cypherMe/blob/master/LICENSE">MIT</a>  and THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.</p>
+  <p>Data usage & privacy:
+    <ul>
+      <li>Password transformations completedly happen client-side (via Javascript in your browser).</li>
+      <li>No data (no cokies, no sessions, no nothing) is persisted or sent over the wire while those transformations.</li>
+    </ul>
+  </p>
+  <p></p>
+  <p>Status: More a side project by <a href="https://daten-und-bass.io">daten&amp;bass</a> and never, never a serious substition for a thorough password manager ... but it is better than writing down passwords or using the same login password combination for all websites (if it leaks once, it might be used everwhere else). DON'T do that. Especially protect/differentiate your password to your email account!</p>
+</div>
+
+<div class="accordion">Example usage</div>
+<div class="panel">
+  <p>As stated above: Please consider using a password manager first ...</p>
+  <p>As always: Follow rules for good passwords (e.g. use upper and lower case, numbers and special characters ...)</p>
+  <p>Remember: Although using "encryption" mechanisms here, the primary aim is not only to have strong encryption, but also as many and as random digits as possible ...</p>
+  <p>And of course: Don't use these examples ...</p>
+  <p><strong>Example 1:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Caesar with Shift: 1</li>
+    <li>Repitions: 1</li>
+    <li>The (encrypted) password: 345NzTfdsfuQx567</li>
+  </ul>
+  <p><strong>Example 2:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Reverse word</li>
+    <li>Repitions: 1</li>
+    <li>The (encrypted) password: 765wPterceSyM543</li>
+  </ul>
+  <p><strong>Example 3:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Reverse word and case</li>
+    <li>Repitions: 2</li>
+    <li>The (encrypted) password: 765WpTERCEsYm543765WpTERCEsYm543</li>
+  </ul>
+  <p><strong>Example 4a:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Vigenère with Key: sitename</li>
+    <li>Repitions: 3</li>
+    <li>The (encrypted) password: 345EgLiprqxHe567345EgLiprqxHe567345EgLiprqxHe567</li>
+  </ul>
+  <p>So e.g. you might want to consider using one (fixed) password and as (changing) keys something related to each website.</p>
+  <p>Save to write down, different passwords for each website and yet easy to remember:</p>
+  <p><strong>Example 4b:</strong></p>
+  <ul>
+    <li>Password to encrypt: 345MySecretPw567</li>
+    <li>Cypher: Vigenère with Key: anothersitename</li>
+    <li>Repitions: 3</li>
+    <li>The (encrypted) password: 345MlGxjvvlXp567345MlGxjvvlXp567345MlGxjvvlXp567</li>
+  </ul>
+
+  <p><strong>Transformations:</strong></p>
+  <p>Caesar & Vigenère: Only letters will be transformed.</p>
+  <p>Vigenère: The key only uses lower-case digits. Others will be filtered out and not used.</p>
+  <p>Reverse Word & Reverse Word: The order of the whole word (all digits of any kind) will be reversed.</p>
+
+</div>
+<br>
+<p style="text-align: center;">* English only *</p>
+<p style="text-align: center;">(This text section is only available in English)</p>
+
+<script type="text/javascript">
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+      this.classList.toggle("active");
+      this.nextElementSibling.classList.toggle("show");
+    }
+  }
+</script>

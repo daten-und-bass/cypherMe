@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  version: "0.1.0"
+  version: "0.2.1"
   title: cypherMe
 host: cypherme.daten-und-bass.io
 basePath: /
@@ -41,8 +41,24 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /swagger:
-    x-swagger-pipe: swagger_raw
+  /en/about:
+    x-swagger-router-controller: context_html_web_index
+    get:
+      description: Returns the about page
+      operationId: about
+      parameters:
+        - $ref: "#/parameters/lang"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  # /swagger:
+  #   x-swagger-pipe: swagger_raw
 
 parameters:
   locale:
@@ -50,6 +66,13 @@ parameters:
     required: true
     in: path
     description: Used for detecting and setting the UI language.
+    type: string
+    enum: [ en, es, de, fr ] 
+  lang:
+    name: lang
+    required: true
+    in: query
+    description: Used for detecting and setting the UI language when redirecting from english-only pages
     type: string
     enum: [ en, es, de, fr ] 
 

@@ -1,72 +1,74 @@
-<style type="text/css">
-  body {
-    font-family: "Courier New", Courier, monospace !important;
-  }
-
-  h1, h3 {
-   text-align: center; 
-  }
-
-  hr {
-    color:rgb(118,118,119);
-  }
-
-  form {
-    width: 100%;
-  }
-
-  legend {
-    font-weight: bold;
-  }
-
-  #divToEncryptDecrypt,
-  #divEncryptedDecrypted {
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-  }
-</style>
-
-<h1><span style="color:rgb(118,118,119);">cypher</span><span style="color:rgb(255, 235, 59);">Me</span></h1>
-<hr>
-<h3 ><span style="color:rgb(118,118,119);">Cypher</span> your <span style="color:rgb(255, 235, 59);">passwords</span> ...</h3>
-<h3>... and get <span style="color:rgb(118,118,119);">two</span>-<span style="color:rgb(255, 235, 59);">factor</span> paper passwords</h3>
-<hr><br><br>
+<div style="text-align: right; font-size: 12px; color:rgb(118,118,119);"><a href="/de">de</a> | <a href="/en">en</a> | <a href="/es">es</a> | <a href="/fr">fr</a>
+</div><br>
 <div id="divToEncryptDecrypt">
   <form id="formToEncrypt">
    <fieldset>
       <legend>Cypher Me:</legend>
-      Your Password:<br>
-      <input id="password" type="text"><br>
-      Choose Cypher:&nbsp; &nbsp; <label id="shiftLabel" for="shift">Choose Shift:</label> <label id="keywordLabel" for="keyword">Choose Keyword:</label> <br>
-      <select id="cypher" onchange="toggleView()">
-        <option value="caesar">Caesar</option>
-        <option value="reverse">Reverse Word</option>
-        <option value="reverseCase">Reverse Word and Case</option>
-        <option value="vigenere">Vigenère</option>
-      </select>
-      <input id="shift" type="number" min="1" max="26" value="1"> <input id="keyword" type="text" min="1"> <br>
-      Choose Repeater:<br>
-      <input id="repeater" type="number" min="1" max="5" value="1"><br><br>
-       <input type="button" value="Encrypt" onclick="return cypherMe(this);"><br>
+      <div class="form-input">
+        <label for="password">{{localesStrings.[Password to encrypt]}}:</label><br>
+        <input id="password" type="text" size="25" pattern='^.{8,32}$' maxlength="32" required="true" onchange="cypherMeApp.check(true); return false;">
+        <div id="passwordCheckMessage" style="display: none;"></div>
+      </div><br>
+      <div class="form-input">
+        <label for="cypher">{{localesStrings.[Cypher]}}:</label><br>
+        <select id="cypher" onchange="cypherMeApp.toggleView(); cypherMeApp.check(true); return false;">
+          <option value="caesar">{{localesStrings.[Caesar]}}</option>
+          <option value="reverse">{{localesStrings.[Reverse word]}}</option>
+          <option value="reverseCase">{{localesStrings.[Reverse word and case]}}</option>
+          <option value="vigenere">{{localesStrings.[Vigenere]}}</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <label id="shiftLabel" for="shift">{{localesStrings.[Shift]}}:</label><br>
+        <input id="shift" type="number" min="1" max="26"  pattern="^([1-9]|1[0-9]|2[0-6])$" value="1" required="true" onchange="cypherMeApp.check(true); return false;">
+        <div id="shiftCheckMessage" style="display: none;"></div>
+      </div>
+      <div class="form-input">
+        <label id="keywordLabel" for="keyword">{{localesStrings.[Key]}}:</label><br>
+        <input id="keyword" type="text" min="1" pattern='^[a-z]{1,32}$' maxlength="32" required="true" onchange="cypherMeApp.check(true); return false;">
+        <div id="keywordCheckMessage" style="display: none;"></div>
+      </div><br>
+      <div class="form-input">
+        <label id="repeaterLabel" for="repeater">{{localesStrings.[Repetitions]}}:</label><br>
+        <input id="repeater" type="number" min="1" max="5" pattern="^([1-5])$" value="1" required="true" onchange="cypherMeApp.check(true); return false;">
+        <div id="repeaterCheckMessage" style="display: none;"></div><br><br>
+      </div><br>
+      <input id="encryptButton" type="button" value="{{localesCommands.[Encrypt]}}" disabled="true" onclick="return cypherMeApp.cypherMe();"><br>
     </fieldset>
   </form>
   <form id="formToDecrypt">
    <fieldset>
       <legend>:eM rehpyC</legend>
-      Your (encrypted) Password:<br>
-      <input id="passwordToDecrypt" type="text"><br>
-      Chosen Cypher:&nbsp; &nbsp; <label id="shiftToDecryptLabel" for="shiftToDecrypt">Chosen Shift:</label> <label id="keywordToDecryptLabel" for="keywordToDecrypt">Choose Keyword:</label> <br>
-      <select id="cypherToDecrypt" onchange="toggleViewToDecrypt()">
-        <option value="caesar">Caesar</option>
-        <option value="reverse">Reverse Word</option>
-        <option value="reverseCase">Reverse Word and Case</option>
-        <option value="vigenere">Vigenère</option>
-      </select>
-      <input id="shiftToDecrypt" type="number" min="1" max="26" value="1"> <input id="keywordToDecrypt" type="text" min="1"><br>
-      Chosen Repeater:<br>
-      <input id="repeaterToDecrypt" type="number" min="1" max="5" value="1"><br><br>
-      <input type="button" value="Decrypt" onclick="return deCypherMe(this);"><br>
+      <div class="form-input">
+        <label for="passwordToDecrypt">{{localesStrings.[The (encrypted) password]}}:</label><br>
+        <input id="passwordToDecrypt" type="text" size="25" pattern='^.{8,32}$' maxlength="32" required="true" onchange="cypherMeApp.check(false); return false;">
+        <div id="passwordCheckMessageToDecrypt" style="display: none;"></div>
+      </div><br>
+      <div class="form-input">
+        <label for="cypherToDecrypt">{{localesStrings.[Cypher]}}:</label><br>
+        <select id="cypherToDecrypt" onchange="cypherMeApp.toggleViewToDecrypt(); cypherMeApp.check(false); return false;">
+          <option value="caesar">{{localesStrings.[Caesar]}}</option>
+          <option value="reverse">{{localesStrings.[Reverse word]}}</option>
+          <option value="reverseCase">{{localesStrings.[Reverse word and case]}}</option>
+          <option value="vigenere">{{localesStrings.[Vigenere]}}</option>
+        </select>
+      </div>
+      <div class="form-input">
+        <label id="shiftLabelToDecrypt" for="shiftToDecrypt">{{localesStrings.[Shift]}}:</label><br>
+        <input id="shiftToDecrypt" type="number" min="1" max="26"  pattern="^([1-9]|1[0-9]|2[0-6])$" value="1" required="true" onchange="cypherMeApp.check(false); return false;">
+        <div id="shiftCheckMessageToDecrypt" style="display: none;"></div>
+      </div>
+      <div class="form-input">
+        <label id="keywordLabelToDecrypt" for="keywordToDecrypt">{{localesStrings.[Key]}}:</label><br>
+        <input id="keywordToDecrypt" type="text" min="1" pattern='^[a-z]{1,32}$' maxlength="32" required="true" onchange="cypherMeApp.check(false); return false;">
+        <div id="keywordCheckMessageToDecrypt" style="display: none;"></div>
+      </div><br>
+      <div class="form-input">
+        <label id="repeaterToDecryptLabel" for="repeaterToDecrypt">{{localesStrings.[Repetitions]}}:</label><br>
+        <input id="repeaterToDecrypt" type="number" min="1" max="5" pattern="^([1-5])$" value="1" required="true" onchange="cypherMeApp.check(false); return false;">
+        <div id="repeaterCheckMessageToDecrypt" style="display: none;"></div><br><br>
+      </div><br>
+      <input id="decryptButton" type="button" value="{{localesCommands.[Decrypt]}}" onclick="return cypherMeApp.deCypherMe();"><br>
     </fieldset>
   </form>
 </div>
@@ -74,37 +76,34 @@
   <form id="formEncrypted">
     <fieldset>
       <legend>:eM rehpyC</legend>
-      Your encrypted Password:<br>
-      <textarea id="passwordEncrypted" readonly="true"></textarea><br>
-      Your used Cypher and Repeater:<br>
-      <textarea id="cypherUsed" readonly="true"></textarea>
+      <label for="passwordEncrypted">{{localesStrings.[The (encrypted) password]}}:</label><br>
+      <textarea id="passwordEncrypted" rows="4" readonly="true"></textarea><br>
+      <label for="cypherUsed">{{localesStrings.[Used cypher and repetitions]}}:</label><br>
+      <textarea id="cypherUsed" rows="4" readonly="true"></textarea>
     </fieldset>
     <div style="text-align: center;">
-      <input type="button" value="Reset" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset();
-      toggleView()" style="margin-top: 8px; width: 99%;"> 
+      <input type="button" value="{{localesCommands.[Reset]}}" onclick="document.getElementById('formToEncrypt').reset(); document.getElementById('formEncrypted').reset(); cypherMeApp.toggleView(); cypherMeApp.check(true); return false;" style="margin-top: 8px; width: 99%;"> 
     </div>
   </form>
   <form id="formDecrypted">
     <fieldset>
       <legend>Cypher Me:</legend>
-      Your decrypted Password:<br>
-      <textarea id="passwordDecrypted" readonly="true"></textarea><br>
-      Your used Cypher and Repeater:<br>
-      <textarea id="cypherUsedToDecrypt" readonly="true"></textarea>
+      <label for="passwordDecrypted">{{localesStrings.[The (decrypted) password]}}:</label><br>
+      <textarea id="passwordDecrypted" rows="4" readonly="true"></textarea><br>
+      <label for="cypherUsedToDecrypt">{{localesStrings.[Used cypher and repetitions]}}:</label><br>
+      <textarea id="cypherUsedToDecrypt" rows="4" readonly="true"></textarea>
     </fieldset>
     <div style="text-align: center;">
-      <input type="button" value="Reset" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset();
-      toggleViewToDecrypt();" style="margin-top: 8px; width: 99%;">
+      <input type="button" value="{{localesCommands.[Reset]}}" onclick="document.getElementById('formToDecrypt').reset(); document.getElementById('formDecrypted').reset(); cypherMeApp.toggleViewToDecrypt(); cypherMeApp.check(false); return false;" style="margin-top: 8px; width: 99%;">
     </div>
   </form>
-</div><br><br>
-<hr>
-<div style="text-align: right; font-size: 12px; color:rgb(118,118,119);">
-  daten&amp;bass 2016
 </div>
+
 <script type="text/javascript">
-window.onload = function () {
-  toggleView();
-  toggleViewToDecrypt();
-}
+  'use strict';
+  window.onload = function () {
+    cypherMeApp.toggleView();
+    cypherMeApp.toggleViewToDecrypt();
+    // console.log(JSON.parse('{{{toJSON localesStrings}}}'))
+  };
 </script>
