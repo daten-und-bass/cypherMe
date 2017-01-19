@@ -1,0 +1,83 @@
+
+body {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+h1, h3 {
+ text-align: center; 
+}
+
+a {
+  color: inherit !important; 
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  color:rgb(118,118,119);
+}
+
+form {
+  width: 100%;
+}
+
+legend {
+  font-weight: bold;
+}
+
+#divToEncryptDecrypt,
+#divEncryptedDecrypted {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+div.form-input {
+  display: inline-block;
+} 
+
+div.accordion {
+  font-family: "Courier New", Courier, monospace !important;
+  background-color: white;
+  /*color: rgb(118,118,119);*/
+  cursor: pointer;
+  padding: 18px;
+  margin-top: 8px;
+  /*width: 100%;*/
+  text-align: left;
+  border: 1px solid black;
+/*    border-top: none;
+  border-left: none;*/
+  /*outline: none;*/
+  /*transition: 0.4s;*/
+}
+
+div.accordion:after {
+  content: '\02795';
+  /*font-size: 10px;*/
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+div.accordion.active:after {
+  content: "\2796";
+}
+
+div.accordion.active, div.accordion:hover {
+  background-color: rgb(255, 235, 59);
+  opacity: 0.8;
+}
+
+div.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+}
+
+div.panel.show {
+  display: block;
+}
