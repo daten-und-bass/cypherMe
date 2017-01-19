@@ -41,8 +41,24 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /swagger:
-    x-swagger-pipe: swagger_raw
+  /en/about:
+    x-swagger-router-controller: context_html_web_index
+    get:
+      description: Returns the about page
+      operationId: about
+      parameters:
+        - $ref: "#/parameters/lang"
+      responses:
+        "200":
+          description: Success
+          schema:
+            type: string
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  # /swagger:
+  #   x-swagger-pipe: swagger_raw
 
 parameters:
   locale:
