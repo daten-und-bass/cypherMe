@@ -2,12 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>CypherMe</title>
-    <script type="text/javascript" src="/app.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{{localesMenu.[cypherMe]}}</title>
+    <meta name="description" content="Cypher your passwords and get two-factor paper passwords"/>
+    <meta name="HandheldFriendly" content="True" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/styles.css"/>
+    <script type="text/javascript">
+      var cypherMeState = (function() {
+        return {
+          localesStrings: JSON.parse('{{{toJSON localesStrings}}}'),
+        }
+      })();
+    </script>
+    <script type="text/javascript" src="/cypherMeApp.js"></script>
 </head>
 <body>
+  {{> header}}
 
-    {{{body}}}
+  {{{body}}}
 
+  {{> footer}}
 </body>
 </html>
