@@ -68,7 +68,7 @@
         <input id="repeaterToDecrypt" type="number" min="1" max="5" pattern="^([1-5])$" value="1" required="true" onchange="cypherMeApp.check(false); return false;">
         <div id="repeaterCheckMessageToDecrypt" style="display: none;"></div><br><br>
       </div><br>
-      <input id="decryptButton" type="button" value="{{localesCommands.[Decrypt]}}" onclick="return cypherMeApp.deCypherMe();"><br>
+      <input id="decryptButton" type="button" value="{{localesCommands.[Decrypt]}}" disabled="true" onclick="return cypherMeApp.deCypherMe();"><br>
     </fieldset>
   </form>
 </div>
