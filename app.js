@@ -61,6 +61,8 @@ var config = {
   appRoot: __dirname // required config
 };
 
+
+
 SwaggerExpress.create(config, function(err, swaggerExpress) {
   if (err) { throw err; }
 
@@ -71,7 +73,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   app.listen(port);
 
   if (swaggerExpress.runner.swagger.paths['/']) {
-    console.log('Site up');
+    console.log('Site up in environment:' + process.env.NODE_ENV);
   }
 });
 
