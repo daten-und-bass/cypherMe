@@ -12,16 +12,17 @@ var appConfig = {
 
   web: function() {
     var web = {
-      ip: process.env.DUNDB_APP_ENV_S2_WB1_IRME_IP1, // not used
-      http: {
-        port: process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTP_PORT, // not used
-      },
+      // ip: process.env.DUNDB_APP_ENV_S2_WB1_IRME_IP1, // not used
+      // http: {
+      //   port: process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTP_PORT, // not used
+      // },
       https: {
-        port: process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTPS_PORT,
-        crt: '/etc/ssl/' + process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTPS_CERT1,
-        key: '/etc/ssl/' + process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTPS_CERT1_KEY,
+        port: process.env.DNB_NODE_OAI_HTTPS_PORT,
+        crt: '/etc/ssl/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1,
+        key: '/etc/ssl/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1_KEY,
       },
-      proxies: [ process.env.DUNDB_INF1_ENV_S1_WF1_FTED_IP1, process.env.DUNDB_APP_ENV_S1_LB1_FTED_IP1 ],
+      // not an ip ... maybe better hops .. change nginx ip settings (show real client ip)
+      // proxies: [ process.env.DNB_INF1_ENV_S1_WF ],
     };
 
     return web;
