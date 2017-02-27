@@ -33,7 +33,7 @@ app.set('view engine', 'handlebars');
 
 // app.set("forceSSLOptions", { httpsPort: webConfig.https.port });
 
-app.use(helmet());
+// app.use(helmet());
 // app.use(forceSSL);
 
 app.use(express.static(path.join(__dirname, 'public')));
