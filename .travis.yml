@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "6"
+before_install:
+  - "npm install -g npm@latest"
 before_script:
   - npm install
   - cp ./config/travis/app4_tst2_s1_wb_key.pem ~
