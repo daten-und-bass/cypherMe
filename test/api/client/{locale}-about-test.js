@@ -1,7 +1,7 @@
 'use strict';
 var chai = require('chai');
 var supertest = require('supertest');
-var api = supertest('https://localhost:10010'); // supertest init;
+var api = supertest('http://localhost:10010'); // supertest init;
 var expect = chai.expect;
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
