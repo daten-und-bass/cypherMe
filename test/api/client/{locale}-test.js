@@ -1,7 +1,7 @@
 'use strict';
 var chai = require('chai');
 var supertest = require('supertest');
-var api = supertest('https://localhost:10011'); // supertest init;
+var api = supertest('https://0.0.0.0:10011'); // supertest init;
 var expect = chai.expect;
 var assert = chai.assert;
 
