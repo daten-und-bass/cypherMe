@@ -2,10 +2,10 @@
 
 var express = require('express');
 var path = require('path');
-var https = require('https');
+// var https = require('https');
 
 var helmet = require('helmet');
-var forceSSL = require('express-force-ssl');
+// var forceSSL = require('express-force-ssl');
 
 var exphbs  = require('express-handlebars');
 
@@ -15,8 +15,8 @@ var webConfig = require('./config/context').webConfig;
 
 var app = express();
 
-var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_CRT}, app);
-httpsServer.listen(webConfig.https.port);
+// var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_CRT}, app);
+// httpsServer.listen(webConfig.https.port);
 
 // app.set('trust proxy', webConfig.proxies);
 // app.set('trust proxy', 'loopback, 192.168.0.41');
@@ -31,10 +31,10 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-app.set("forceSSLOptions", { httpsPort: webConfig.https.port });
+// app.set("forceSSLOptions", { httpsPort: webConfig.https.port });
 
 app.use(helmet());
-app.use(forceSSL);
+// app.use(forceSSL);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
