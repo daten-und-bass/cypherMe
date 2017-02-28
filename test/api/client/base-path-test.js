@@ -11,7 +11,7 @@ describe('/', function() {
     it('should respond with 302 Success', function(done) {
       api.get('/')
       .set('Content-Type', 'text/html')
-      .expect(302)
+      .expect(303)
 
       done();
     });
