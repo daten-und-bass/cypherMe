@@ -1,13 +1,12 @@
 'use strict';
 var chai = require('chai');
-var supertest = require('supertest');
-var api = supertest('https://localhost:10011'); // supertest init;
+var request = require('request');
 var expect = chai.expect;
 var assert = chai.assert;
 
 var clientApp = require('../../../public/cypherMeApp');
 
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 var urlsToTest = ['/de', '/en', '/es', '/fr'];
 
@@ -15,20 +14,44 @@ describe('/{locale}', function() {
   describe('get', function() {
 
     urlsToTest.forEach(function (currentValue) {
-      it(currentValue + ' should respond with 200 Success', function(done) {
-        api.get(currentValue)
-        .set('Content-Type', 'text/html')
-        .expect(200)
-        // .end(function(err, res) {
-        //   if (err) return done(err);
-          
-        //   expect(res.body).to.not.equal(null);
-          // expect(clientApp.cypherMeCaesarEncrypt('abc123', 1)).to.equal('bcd123');
+      it('should respond with 200 Success', function(done) {
+        request({
+          url: 'https://localhost:10011' + currentValue,
+          method: 'GET',
+          headers: {
+            'Content-Type': 'text/html'
+          }
+        },
+        function(error, res, body) {
+          if (error) return done(error);
+
+          expect(res.statusCode).to.equal(200);
+
+          expect(body).to.not.equal(null); // non-json response or no schema
           done();
-        // });
+        });
       });
-    })
+
+      it('should respond with default Error', function(done) {
+        request({
+          url: 'https://localhost:10011' + currentValue + '/ee',
+          method: 'GET',
+          headers: {
+            'Content-Type': 'text/html'
+          }
+        },
+        function(error, res, body) {
+          if (error) return done(error);
+
+          expect(res.statusCode).to.equal(404);
+
+          expect(body).to.not.equal(null); // non-json response or no schema
+          done();
+        });
+      });
+    });
   });
+
 });
 
 describe('Cyphers:', function () {
@@ -196,3 +219,5 @@ describe('Cyphers:', function () {
     });
   });
 });
+
+

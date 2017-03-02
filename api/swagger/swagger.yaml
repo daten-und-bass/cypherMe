@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  version: "0.2.1"
+  version: "0.3.1"
   title: cypherMe
 host: cypherme.daten-und-bass.io
 basePath: /
@@ -16,6 +16,10 @@ paths:
     get:
       description: Redirects to localized main html (locale is detected according to req.acceptsLanguages() and code '302' is the default for a successful redirectin express.js)
       operationId: index
+      consumes:
+        - text/plain
+      produces:
+        - text/plain
       responses:
         "302":
           description: Success
@@ -70,7 +74,7 @@ parameters:
     enum: [ en, es, de, fr ] 
   lang:
     name: lang
-    required: true
+    required: false
     in: query
     description: Used for detecting and setting the UI language when redirecting from english-only pages
     type: string

@@ -10,11 +10,11 @@ var htmlWebIndex = function (api, localesUtils) {
       if (guessedLocale) {
         var locales = localesUtils.setLocales(locale, guessedLocale, that.strings);
         var locale = guessedLocale;
-        res.redirect('/' + guessedLocale);
+        res.redirect(302, '/' + guessedLocale);
       } else {
         var locales = localesUtils.setLocales(locale, that.defaultLocale, that.strings);
         var locale = that.defaultLocale;
-        res.redirect(that.defaultLocale);
+        res.redirect(302, '/' + that.defaultLocale);
       }
     },
 
@@ -33,7 +33,7 @@ var htmlWebIndex = function (api, localesUtils) {
     about: function(req, res) {
       var locales = localesUtils.setLocales(locale, req.swagger.params.lang.value, that.strings); 
       var locale = 'en';
-      var lang = req.swagger.params.lang.value;
+      var lang = req.swagger.params.lang.value || 'en';
 
       res.render('service_pages/about', 
         { locale: locale,
