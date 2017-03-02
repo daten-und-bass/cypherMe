@@ -21,6 +21,12 @@ httpsServer.listen(webConfig.https.port);
 // app.set('trust proxy', webConfig.proxies);
 // app.set('trust proxy', 'loopback, 192.168.0.41');
 
+console.log(process.env.NODE_ENV);
+console.log(process.env.DNB_NODE_OAI_HTTPS_PORT); 
+console.log(process.env.webConfig.https.port);
+console.log(process.env.CYPHERME_WEB_HTTPS_KEY);
+console.log(process.env.CYPHERME_WEB_HTTPS_CRT);
+
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
   helpers: {
