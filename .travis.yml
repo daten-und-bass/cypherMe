@@ -6,5 +6,6 @@ before_script:
   - cp ./config/travis/app4_tst2_s1_wb_key.pem ~
   - cp ./config/travis/app4_tst2_s1_wb_pub.pem ~
 script:
-  - swagger project start &
-  - swagger project test
+  - swagger project start
+  # - swagger project start &
+  # - swagger project test
