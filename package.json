@@ -1,6 +1,6 @@
 {
   "name": "cypherMe",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "A NodeJS app for client-side created two-factor paper passwords",
   "keywords": [

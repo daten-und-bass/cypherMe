@@ -15,13 +15,6 @@ var webConfig = require('./config/context').webConfig;
 
 var app = express();
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.DNB_NODE_OAI_HTTPS_PORT); 
-console.log(webConfig.https.port);
-console.log(process.env.CYPHERME_WEB_HTTPS_KEY);
-console.log(process.env.CYPHERME_WEB_HTTPS_CRT);
-
-
 var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_CRT}, app);
 httpsServer.listen(webConfig.https.port);
 

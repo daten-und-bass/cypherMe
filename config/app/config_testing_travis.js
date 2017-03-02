@@ -12,10 +12,6 @@ var appConfig = {
 
   web: function() {
     var web = {
-      // ip: process.env.DUNDB_APP_ENV_S2_WB1_IRME_IP1, // not used
-      // http: {
-      //   port: process.env.DUNDB_APP_ENV_S2_WB1_IRME_HTTP_PORT, // not used
-      // },
       https: {
         port: process.env.DNB_NODE_OAI_HTTPS_PORT,
         crt: process.env.HOME + '/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1,
@@ -30,12 +26,8 @@ var appConfig = {
 };
 
 (function readPKIFiles() {
-  // process.env.WEB_HTTPS_KEY = fs.readFileSync(appConfig.web().https.key, 'utf8');
   process.env.CYPHERME_WEB_HTTPS_KEY = fs.readFileSync(appConfig.web().https.key, 'utf8');
-  // process.env.WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8');
-  process.env.CYPHERME_WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8');
-
-  // fs.unlinkSync(appConfig.web().https.key)  
+  process.env.CYPHERME_WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8'); 
 })();
 
 module.exports = appConfig;
