@@ -17,7 +17,7 @@ var app = express();
 
 console.log(process.env.NODE_ENV);
 console.log(process.env.DNB_NODE_OAI_HTTPS_PORT); 
-console.log(process.env.webConfig.https.port);
+console.log(webConfig.https.port);
 console.log(process.env.CYPHERME_WEB_HTTPS_KEY);
 console.log(process.env.CYPHERME_WEB_HTTPS_CRT);
 
