@@ -13,13 +13,32 @@ describe('/', function() {
         url: 'https://localhost:10011/',
         method: 'GET',
         headers: {
-          'Content-Type': 'text/palin'
+          'Content-Type': 'text/plain'
         }
       },
       function(error, res, body) {
         if (error) return done(error);
 
         expect(res.statusCode).to.equal(302);
+
+        expect(body).to.not.equal(null); // non-json response or no schema
+        done();
+      });
+    });
+
+    it('should respond with 200 Success after redirect', function(done) {
+      request({
+        followRedirect: true,
+        url: 'https://localhost:10011/',
+        method: 'GET',
+        headers: {
+          'Content-Type': 'text/plain'
+        }
+      },
+      function(error, res, body) {
+        if (error) return done(error);
+
+        expect(res.statusCode).to.equal(200);
 
         expect(body).to.not.equal(null); // non-json response or no schema
         done();
