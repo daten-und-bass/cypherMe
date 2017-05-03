@@ -19,6 +19,6 @@ The (encrypted) password: 9§WpETIsYm2!9§WpETIsYm2!
 
 ![cypherMe HOME page](/public/screenshots/HOME_page.png?raw=true "cypherMe HOME page")
 
-![cypherMe REVERSE WORD CASE CYPHER](/public/images/REVERSE_WORD_CASE_CYPHER.png?raw=true "cypherMe REVERSE WORD CASE CYPHER")
+![cypherMe REVERSE WORD CASE CYPHER](/public/screenshots/REVERSE_WORD_CASE_CYPHER.png?raw=true "cypherMe REVERSE WORD CASE CYPHER")
 
-![cypherMe REVERSE WORD CASE DECYPHER](/public/images/REVERSE_WORD_CASE_DECYPHER.png?raw=true "cypherMe REVERSE WORD CASE DECYPHER")
+![cypherMe REVERSE WORD CASE DECYPHER](/public/screenshots/REVERSE_WORD_CASE_DECYPHER.png?raw=true "cypherMe REVERSE WORD CASE DECYPHER")
