@@ -10,10 +10,10 @@ https://cypherme.daten-und-bass.io
 https://cypherme.daten-und-bass.io/en/about
 
 ## Example ##
-Password to encrypt: !2MySitePw§9
-Cypher: Reverse word and case
-Repititions: 2
-The (encrypted) password: 9§WpETIsYm2!9§WpETIsYm2!
+Password to encrypt: !2MySitePw§9  
+Cypher: Reverse word and case  
+Repititions: 2  
+The (encrypted) password: 9§WpETIsYm2!9§WpETIsYm2!  
 
 ## Screen Shots ##
 
