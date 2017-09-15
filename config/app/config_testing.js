@@ -7,17 +7,16 @@ var appConfig = {
     var environment = {
       name: process.env.NODE_ENV,
     };
+
     return environment;
   },
 
   web: function() {
     var web = {
       https: {
-        port: process.env.DNB_NODE_OAI_HTTPS_PORT,
-        // crt: '/etc/ssl/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1,
-        crt: process.env.DNB_APP_ENV_S1_SEC_PATH + '/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1_PUB,
-        // key: '/etc/ssl/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1_KEY,
-        key: process.env.DNB_APP_ENV_S1_SEC_PATH + '/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1_KEY,
+        port: process.env.DNB_N_NODEJS_OAI_HTTPS_PORT,
+        crt: process.env.DNB_ENV_V_SEC_PATH + '/' + process.env.DNB_ENV_APP_S1_WB_FTED_HTTPS_CERT1_PUB,
+        key: process.env.DNB_ENV_V_SEC_PATH + '/' + process.env.DNB_ENV_APP_S1_WB_FTED_HTTPS_CERT1_KEY,
       },
       // not an ip ... maybe better hops .. change nginx ip settings (show real client ip)
       // proxies: [ process.env.DNB_INF1_ENV_S1_WF ],
