@@ -20,7 +20,34 @@
       </div>
       <div class="form-input">
         <label id="shiftLabel" for="shift">{{localesStrings.[Shift]}}:</label><br>
-        <input id="shift" type="number" min="1" max="26"  pattern="^([1-9]|1[0-9]|2[0-6])$" value="1" required="true" onchange="cypherMeApp.check(true); return false;">
+        <select id="shift" required="true" onchange="cypherMeApp.check(true); return false;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+        </select>
         <div id="shiftCheckMessage" style="display: none;"></div>
       </div>
       <div class="form-input">
@@ -30,7 +57,13 @@
       </div><br>
       <div class="form-input">
         <label id="repeaterLabel" for="repeater">{{localesStrings.[Repetitions]}}:</label><br>
-        <input id="repeater" type="number" min="1" max="5" pattern="^([1-5])$" value="1" required="true" onchange="cypherMeApp.check(true); return false;">
+        <select id="repeater" required="true" onchange="cypherMeApp.check(true); return false;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <div id="repeaterCheckMessage" style="display: none;"></div><br><br>
       </div><br>
       <input id="encryptButton" type="button" value="{{localesCommands.[Encrypt]}}" disabled="true" onclick="return cypherMeApp.cypherMe();"><br>
@@ -41,7 +74,7 @@
       <legend>:eM rehpyC</legend>
       <div class="form-input">
         <label for="passwordToDecrypt">{{localesStrings.[The (encrypted) password]}}:</label><br>
-        <input id="passwordToDecrypt" type="text" size="25" pattern='^.{8,32}$' maxlength="32" required="true" onchange="cypherMeApp.check(false); return false;">
+        <input id="passwordToDecrypt" type="text" size="25" pattern='^.{8,160}$' maxlength="160" required="true" onchange="cypherMeApp.check(false); return false;">
         <div id="passwordCheckMessageToDecrypt" style="display: none;"></div>
       </div><br>
       <div class="form-input">
@@ -55,7 +88,34 @@
       </div>
       <div class="form-input">
         <label id="shiftLabelToDecrypt" for="shiftToDecrypt">{{localesStrings.[Shift]}}:</label><br>
-        <input id="shiftToDecrypt" type="number" min="1" max="26"  pattern="^([1-9]|1[0-9]|2[0-6])$" value="1" required="true" onchange="cypherMeApp.check(false); return false;">
+        <select id="shiftToDecrypt" required="true" onchange="cypherMeApp.check(false); return false;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">24</option>
+          <option value="25">25</option>
+          <option value="26">26</option>
+        </select>
         <div id="shiftCheckMessageToDecrypt" style="display: none;"></div>
       </div>
       <div class="form-input">
@@ -65,7 +125,13 @@
       </div><br>
       <div class="form-input">
         <label id="repeaterToDecryptLabel" for="repeaterToDecrypt">{{localesStrings.[Repetitions]}}:</label><br>
-        <input id="repeaterToDecrypt" type="number" min="1" max="5" pattern="^([1-5])$" value="1" required="true" onchange="cypherMeApp.check(false); return false;">
+        <select id="repeaterToDecrypt" required="true" onchange="cypherMeApp.check(false); return false;">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <div id="repeaterCheckMessageToDecrypt" style="display: none;"></div><br><br>
       </div><br>
       <input id="decryptButton" type="button" value="{{localesCommands.[Decrypt]}}" disabled="true" onclick="return cypherMeApp.deCypherMe();"><br>
@@ -104,6 +170,5 @@
   window.onload = function () {
     cypherMeApp.toggleView();
     cypherMeApp.toggleViewToDecrypt();
-    // console.log(JSON.parse('{{{toJSON localesStrings}}}'))
   };
 </script>

@@ -82,6 +82,12 @@ var localesStringsApp = {
     'es': {'ES': '[ 8 - 32 caracteres ]'},
     'fr': {'FR': '[ 8 - 32 caractères ]'},  
   },
+  '8 - 160 characters': {
+    'de': {'DE': '[ 8 - 160 Zeichen ]'},
+    'en': {'EN': '[ 8 - 160 characters ]'},
+    'es': {'ES': '[ 8 - 160 caracteres ]'},
+    'fr': {'FR': '[ 8 - 160 caractères ]'},  
+  },
   '1 number between 1 - 26': {
     'de': {'DE': '[ 1 Zahl zwischen 1 - 26 ]'},
     'en': {'EN': '[ 1 number between 1 - 26 ]'},

@@ -258,7 +258,7 @@ var cypherMeApp = (function () {
         keyword: 'keywordToDecrypt',
         repeater: 'repeaterToDecrypt',
         passwordCheckMessage: 'passwordCheckMessageToDecrypt',
-        passwordCheckString: cypherMeState.localesStrings['8 - 32 characters'],
+        passwordCheckString: cypherMeState.localesStrings['8 - 160 characters'],
         shiftCheckMessage: 'shiftCheckMessageToDecrypt',
         shiftCheckString: cypherMeState.localesStrings['1 number between 1 - 26'],
         keywordCheckMessage: 'keywordCheckMessageToDecrypt',

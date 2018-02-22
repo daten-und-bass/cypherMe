@@ -189,7 +189,8 @@ describe('Cyphers:', function () {
       ['elMoQQÜ+123ÖÄU??', 'evQmMYÜ+123ÖÄN??',  'A KEY with Spaces', 'evQmMYÜ+123ÖÄN??evQmMYÜ+123ÖÄN??'],
       ['el MoQQÜ + 123ÖÄ U??', 'iw YcGGÜ + 123ÖÄ O??', 'el MoQQÜ + 123ÖÄ U??', 'iw YcGGÜ + 123ÖÄ O??iw YcGGÜ + 123ÖÄ O??'],
       ['el MoQQÜ + 123ÖÄ U??', 'eg QfOBÜ + 123ÖÄ I??', 'AveryLONGwordAveryLONGwordAveryLONGwordAveryLONGwordAveryLONGword', 'eg QfOBÜ + 123ÖÄ I??eg QfOBÜ + 123ÖÄ I??'],
-      ['el MoQQÜ + 123ÖÄ U??', 'ev QmMYÜ + 123ÖÄ N??', 'A KEY with Spaces', 'ev QmMYÜ + 123ÖÄ N??ev QmMYÜ + 123ÖÄ N??']
+      ['el MoQQÜ + 123ÖÄ U??', 'ev QmMYÜ + 123ÖÄ N??', 'A KEY with Spaces', 'ev QmMYÜ + 123ÖÄ N??ev QmMYÜ + 123ÖÄ N??'],
+      ['345MySecretPw567', '345EgLiprqxHe567', 'sitename', '345EgLiprqxHe567345EgLiprqxHe567', '345EgLiprqxHe567345EgLiprqxHe567345EgLiprqxHe567']
     ];
     valuesToTest.forEach(function (currentArray) {
       it('should encrypt ' + currentArray[0] + ' to ' + currentArray[1] + ' (Key: ' + currentArray[2], function (done) {
@@ -208,14 +209,24 @@ describe('Cyphers:', function () {
         assert(clientApp.cypherMeViginereDecrypt(clientApp.dividePassword(currentArray[1], 1), currentArray[2]) === currentArray[0]);
         done();
       });
-      it('should encrypt ' + currentArray[0] + ' to ' + currentArray[1] + ' (Key: ' + currentArray[2] + ' Repetions: 2)', function (done) {
+      it('should encrypt ' + currentArray[0] + ' to ' + currentArray[3] + ' (Key: ' + currentArray[2] + ' Repetions: 2)', function (done) {
         assert(clientApp.repeatPassword(clientApp.cypherMeViginereEncrypt(currentArray[0], currentArray[2]), 2) === currentArray[3]);
         done();
       });
-      it('should decrypt ' + currentArray[1] + ' to ' + currentArray[0] + ' (Key: ' + currentArray[2] + ' Repetions: 2)', function (done) {
+      it('should decrypt ' + currentArray[3] + ' to ' + currentArray[0] + ' (Key: ' + currentArray[2] + ' Repetions: 2)', function (done) {
         assert(clientApp.cypherMeViginereDecrypt(clientApp.dividePassword(currentArray[3], 2), currentArray[2]) === currentArray[0]);
         done();
-      });     
+      });
+      if (currentArray.length >= 5 ) {
+        it('should encrypt ' + currentArray[0] + ' to ' + currentArray[4] + ' (Key: ' + currentArray[2] + ' Repetions: 3)', function (done) {
+          assert(clientApp.repeatPassword(clientApp.cypherMeViginereEncrypt(currentArray[0], currentArray[2]), 3) === currentArray[4]);
+          done();
+        });
+        it('should decrypt ' + currentArray[4] + ' to ' + currentArray[0] + ' (Key: ' + currentArray[2] + ' Repetions: 3)', function (done) {
+          assert(clientApp.cypherMeViginereDecrypt(clientApp.dividePassword(currentArray[4], 3), currentArray[2]) === currentArray[0]);
+          done();
+        }); 
+      }  
     });
   });
 });
