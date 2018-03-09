@@ -15,11 +15,10 @@ var webConfig = require('./config/context').webConfig;
 
 var app = express();
 
-var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_CRT}, app);
+var httpsServer = https.createServer({key: process.env.CYPHERME_WEB_HTTPS_KEY, cert: process.env.CYPHERME_WEB_HTTPS_PUB}, app);
 httpsServer.listen(webConfig.https.port);
 
-// app.set('trust proxy', webConfig.proxies);
-// app.set('trust proxy', 'loopback, 192.168.0.41');
+app.set('trust proxy', webConfig.proxies);
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',

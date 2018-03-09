@@ -6,6 +6,9 @@ var appConfig = {
   environment: function() {
     var environment = {
       name: process.env.NODE_ENV,
+      // git: {
+      //   commit: process.env.CYPHERME_WEB_REPO_HEAD,
+      // },
     };
     return environment;
   },
@@ -13,12 +16,11 @@ var appConfig = {
   web: function() {
     var web = {
       https: {
-        port: process.env.DNB_NODE_OAI_HTTPS_PORT,
-        crt: process.env.HOME + '/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1,
-        key: process.env.HOME + '/' + process.env.DNB_APP_ENV_S1_WB_FTED_HTTPS_CERT1_KEY,
+        port: process.env.CYPHERME_WEB_HTTPS_PORT,
+        pub: process.env.HOME + '/' + process.env.CYPHERME_WEB_HTTPS_CERT1_PUB_PATH,
+        key: process.env.HOME + '/' + process.env.CYPHERME_WEB_HTTPS_CERT1_KEY_PATH,
       },
-      // not an ip ... maybe better hops .. change nginx ip settings (show real client ip)
-      // proxies: [ process.env.DNB_INF1_ENV_S1_WF ],
+      proxies: isNaN(parseInt(process.env.CYPHERME_WEB_PROXIES)) ? false : parseInt(process.env.CYPHERME_WEB_PROXIES),
     };
 
     return web;
@@ -27,7 +29,7 @@ var appConfig = {
 
 (function readPKIFiles() {
   process.env.CYPHERME_WEB_HTTPS_KEY = fs.readFileSync(appConfig.web().https.key, 'utf8');
-  process.env.CYPHERME_WEB_HTTPS_CRT = fs.readFileSync(appConfig.web().https.crt, 'utf8'); 
+  process.env.CYPHERME_WEB_HTTPS_PUB = fs.readFileSync(appConfig.web().https.pub, 'utf8'); 
 })();
 
 module.exports = appConfig;
